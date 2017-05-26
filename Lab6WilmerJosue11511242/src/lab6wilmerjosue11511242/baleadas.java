@@ -9,13 +9,6 @@ package lab6wilmerjosue11511242;
  *
  * @author macbookpro
  */
-public class Lab6WilmerJosue11511242 {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
+public class baleadas {
     
 }
