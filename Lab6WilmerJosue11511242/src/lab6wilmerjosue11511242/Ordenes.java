@@ -18,6 +18,9 @@ public class Ordenes {
     private SimpleDateFormat dia;
     private int persona;
 
+    public Ordenes() {
+    }
+
     public Ordenes(int numeroorden, SimpleDateFormat hora, SimpleDateFormat dia, int persona) {
         this.numeroorden = numeroorden;
         this.hora = hora;

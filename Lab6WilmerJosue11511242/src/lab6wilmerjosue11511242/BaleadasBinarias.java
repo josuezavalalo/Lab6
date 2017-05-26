@@ -69,11 +69,13 @@ public class BaleadasBinarias extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         ta_direccion = new javax.swing.JTextArea();
         jButton3 = new javax.swing.JButton();
-        jDialog1 = new javax.swing.JDialog();
+        jd_eliminarc = new javax.swing.JDialog();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jList4 = new javax.swing.JList<>();
+        jl_eliminar = new javax.swing.JList<>();
         jLabel12 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
+        pop_menu = new javax.swing.JPopupMenu();
+        popm_orden = new javax.swing.JMenuItem();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
@@ -96,6 +98,11 @@ public class BaleadasBinarias extends javax.swing.JFrame {
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
         arbol.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        arbol.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                arbolMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(arbol);
 
         jButton2.setText("Mostrar");
@@ -266,16 +273,6 @@ public class BaleadasBinarias extends javax.swing.JFrame {
         jd_cliente.getContentPane().setLayout(jd_clienteLayout);
         jd_clienteLayout.setHorizontalGroup(
             jd_clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_clienteLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jd_clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel8))
-                .addGap(23, 23, 23)
-                .addGroup(jd_clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tf_telefono, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
-                    .addComponent(tf_nombre))
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jd_clienteLayout.createSequentialGroup()
                 .addGroup(jd_clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jd_clienteLayout.createSequentialGroup()
@@ -292,7 +289,16 @@ public class BaleadasBinarias extends javax.swing.JFrame {
                         .addGap(85, 85, 85)
                         .addGroup(jd_clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton3)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jd_clienteLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jd_clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel8))
+                        .addGap(23, 23, 23)
+                        .addGroup(jd_clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tf_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tf_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jd_clienteLayout.setVerticalGroup(
@@ -304,11 +310,11 @@ public class BaleadasBinarias extends javax.swing.JFrame {
                 .addGroup(jd_clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(tf_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
+                .addGap(13, 13, 13)
                 .addGroup(jd_clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(tf_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(tf_telefono, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE))
+                .addGap(9, 9, 9)
                 .addGroup(jd_clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(tf_dinero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -321,32 +327,37 @@ public class BaleadasBinarias extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jScrollPane6.setViewportView(jList4);
+        jScrollPane6.setViewportView(jl_eliminar);
 
         jLabel12.setText("Seleccione Cliente ");
 
         jButton4.setText("Eliminar");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
-        jDialog1.getContentPane().setLayout(jDialog1Layout);
-        jDialog1Layout.setHorizontalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog1Layout.createSequentialGroup()
-                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDialog1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jd_eliminarcLayout = new javax.swing.GroupLayout(jd_eliminarc.getContentPane());
+        jd_eliminarc.getContentPane().setLayout(jd_eliminarcLayout);
+        jd_eliminarcLayout.setHorizontalGroup(
+            jd_eliminarcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_eliminarcLayout.createSequentialGroup()
+                .addGroup(jd_eliminarcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_eliminarcLayout.createSequentialGroup()
                         .addGap(45, 45, 45)
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jDialog1Layout.createSequentialGroup()
+                    .addGroup(jd_eliminarcLayout.createSequentialGroup()
                         .addGap(133, 133, 133)
                         .addComponent(jLabel12))
-                    .addGroup(jDialog1Layout.createSequentialGroup()
+                    .addGroup(jd_eliminarcLayout.createSequentialGroup()
                         .addGap(150, 150, 150)
                         .addComponent(jButton4)))
                 .addContainerGap(55, Short.MAX_VALUE))
         );
-        jDialog1Layout.setVerticalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog1Layout.createSequentialGroup()
+        jd_eliminarcLayout.setVerticalGroup(
+            jd_eliminarcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_eliminarcLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLabel12)
                 .addGap(33, 33, 33)
@@ -355,6 +366,9 @@ public class BaleadasBinarias extends javax.swing.JFrame {
                 .addComponent(jButton4)
                 .addContainerGap(64, Short.MAX_VALUE))
         );
+
+        popm_orden.setText("Terminar Orden");
+        pop_menu.add(popm_orden);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -371,6 +385,11 @@ public class BaleadasBinarias extends javax.swing.JFrame {
         jMenu4.add(jMenuItem2);
 
         Modificar.setText("Modificar");
+        Modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModificarActionPerformed(evt);
+            }
+        });
         jMenu4.add(Modificar);
 
         jMenuItem3.setText("Eliminar Cliente");
@@ -518,7 +537,7 @@ public class BaleadasBinarias extends javax.swing.JFrame {
             n.add(new DefaultMutableTreeNode("Numero De telefono" + lista.get(posision).getNumero()));
             n.add(new DefaultMutableTreeNode("Dinero" + lista.get(posision).getDinero()));
             n.add(new DefaultMutableTreeNode("Direccion" + lista.get(posision).getDireccion()));
-
+            DefaultMutableTreeNode ne = new DefaultMutableTreeNode(new Ordenes());
             for (int i = 0; i < lista.get(posision).getLista().size(); i++) {
                 DefaultMutableTreeNode t = new DefaultMutableTreeNode(lista.get(posision).getLista().get(i));
                 if (lista.get(posision).getLista().get(i).equals("Baleadas Binarias")) {
@@ -565,7 +584,8 @@ public class BaleadasBinarias extends javax.swing.JFrame {
                     t.add(pla);
                     t.add(chorizo);
                 }
-                n.add(t);
+                ne.add(t);
+                n.add(ne);
 
             }
 
@@ -576,6 +596,44 @@ public class BaleadasBinarias extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(jd_info, "Seleccione Persona");
         }
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void arbolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arbolMouseClicked
+        // TODO add your handling code here:
+        if (evt.isMetaDown()) {
+            int row = arbol.getClosestRowForLocation(evt.getX(), evt.getY());
+            arbol.setSelectionRow(row);
+            Object v1 = arbol.getSelectionRows();
+            nodo_selecionado = (DefaultMutableTreeNode) v1;
+            if (nodo_selecionado.getUserObject() instanceof Ordenes) {
+                persona_seleccionada = (Clientes) nodo_selecionado.getUserObject();
+                pop_menu.show(evt.getComponent(), evt.getY(), evt.getX());
+            }
+        } else {
+        }
+    }//GEN-LAST:event_arbolMouseClicked
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        // TODO add your handling code here:\
+        
+        DefaultListModel modelo = new DefaultListModel();
+        for (Clientes c : lista) {
+            modelo.addElement(new Clientes(c.getNombre(), c.getNumero(), c.getDinero(), c.getDireccion()));
+        }
+        jl_orden.setModel(modelo);
+        int posicio = jl_eliminar.getSelectedIndex();
+        lista.remove(posicio);
+        for (Clientes c : lista) {
+            modelo.addElement(new Clientes(c.getNombre(), c.getNumero(), c.getDinero(), c.getDireccion()));
+        }
+        jl_orden.setModel(modelo);
+    }//GEN-LAST:event_jButton4MouseClicked
+
+    private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
+        // TODO add your handling code here:
+        jd_eliminarc.pack();
+        jd_eliminarc.setLocationRelativeTo(this);
+        jd_eliminarc.setVisible(true);
+    }//GEN-LAST:event_ModificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -621,7 +679,6 @@ public class BaleadasBinarias extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -632,7 +689,6 @@ public class BaleadasBinarias extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -652,10 +708,14 @@ public class BaleadasBinarias extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JDialog jd_agregaror;
     private javax.swing.JDialog jd_cliente;
+    private javax.swing.JDialog jd_eliminarc;
     private javax.swing.JDialog jd_info;
     private javax.swing.JList<String> jl_clientes;
+    private javax.swing.JList<String> jl_eliminar;
     private javax.swing.JLabel jl_numero;
     private javax.swing.JList<String> jl_orden;
+    private javax.swing.JPopupMenu pop_menu;
+    private javax.swing.JMenuItem popm_orden;
     private javax.swing.JTextArea ta_direccion;
     private javax.swing.JTextField tf_dinero;
     private javax.swing.JTextField tf_nombre;
@@ -665,4 +725,6 @@ ArrayList<Clientes> lista = new ArrayList();
     ArrayList<String> baleadas = new ArrayList();
     ArrayList<Ordenes> listas = new ArrayList();
     int numero = 7;
+    DefaultMutableTreeNode nodo_selecionado;
+    Clientes persona_seleccionada;
 }
